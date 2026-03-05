@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181c24;
+  --surface3: #1e2330;
+  --border: #252b38;
+  --border2: #2e3547;
+  --accent: #e8c84a;
+  --accent2: #f0d878;
+  --accent-dim: rgba(232, 200, 74, 0.12);
+  --text1: #e8eaf0;
+  --text2: #9ba3b8;
+  --text3: #5c6478;
+  --green: #3ecf8e;
+  --green-dim: rgba(62, 207, 142, 0.12);
+  --red: #f04b4b;
+  --red-dim: rgba(240, 75, 75, 0.12);
+  --blue: #4b8ef0;
+  --blue-dim: rgba(75, 142, 240, 0.12);
+  --orange: #f07a4b;
+  --orange-dim: rgba(240, 122, 75, 0.12);
+  --purple: #9b6cf0;
+  --purple-dim: rgba(155, 108, 240, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text1);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md font-mono text-xs cursor-pointer border-none transition-all duration-150;
+  }
+  .btn-primary {
+    @apply bg-accent text-bg font-semibold hover:bg-accent2;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-text2 border border-border2 hover:bg-surface2 hover:text-text1;
+  }
+  .btn-success {
+    @apply text-emerald border border-emerald/20 hover:bg-emerald/10;
+    background: var(--green-dim);
+  }
+  .btn-danger {
+    @apply text-crimson border border-crimson/20 hover:bg-crimson/10;
+    background: var(--red-dim);
+  }
+  .btn-sm {
+    @apply px-2.5 py-1 text-[11px];
+  }
+
+  .card {
+    @apply bg-surface border border-border rounded-xl p-5;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium;
+  }
+  .badge::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full flex-shrink-0;
+    display: inline-block;
+  }
+  .badge-green { background: var(--green-dim); color: var(--green); }
+  .badge-green::before { background: var(--green); }
+  .badge-red { background: var(--red-dim); color: var(--red); }
+  .badge-red::before { background: var(--red); }
+  .badge-yellow { background: var(--accent-dim); color: var(--accent); }
+  .badge-yellow::before { background: var(--accent); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); }
+  .badge-blue::before { background: var(--blue); }
+  .badge-orange { background: var(--orange-dim); color: var(--orange); }
+  .badge-orange::before { background: var(--orange); }
+  .badge-purple { background: var(--purple-dim); color: var(--purple); }
+  .badge-purple::before { background: var(--purple); }
+  .badge-gray { background: var(--surface2); color: var(--text3); }
+  .badge-gray::before { background: var(--text3); }
+
+  .form-control {
+    @apply w-full bg-surface2 border border-border2 text-text1 px-3 py-2 rounded-md font-mono text-xs focus:outline-none focus:border-accent;
+  }
+
+  .form-label {
+    @apply block text-[10px] text-text3 uppercase tracking-wider mb-1.5;
+  }
+
+  .data-table th {
+    @apply px-3.5 py-2.5 text-left text-[10px] text-text3 uppercase tracking-wider border-b border-border font-medium;
+  }
+  .data-table td {
+    @apply px-3.5 py-3 border-b border-border text-text2 text-xs align-middle;
+  }
+  .data-table tr:last-child td { @apply border-b-0; }
+  .data-table tbody tr { @apply transition-colors duration-100; }
+  .data-table tbody tr:hover td { @apply bg-surface2; }
+
+  .kpi-card {
+    @apply bg-surface border border-border rounded-xl p-5 relative overflow-hidden;
+  }
+  .kpi-icon {
+    @apply w-9 h-9 rounded-lg flex items-center justify-center mb-3.5;
+  }
+  .kpi-value {
+    @apply font-syne font-bold text-2xl text-text1;
+  }
+  .kpi-label {
+    @apply text-[11px] text-text3 mt-1;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-2.5 px-2.5 py-2 rounded-md cursor-pointer text-text2 transition-all duration-150 mb-0.5 text-xs;
+  }
+  .nav-item:hover { @apply bg-surface2 text-text1; }
+  .nav-item.active { color: var(--accent); background: var(--accent-dim); }
+
+  .tab {
+    @apply px-4 py-2.5 text-xs cursor-pointer text-text3 border-b-2 border-transparent -mb-px transition-all duration-150;
+  }
+  .tab:hover { @apply text-text1; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .section-title {
+    @apply font-syne font-bold text-xl mb-1;
+  }
+  .section-sub {
+    @apply text-text3 text-xs mb-5;
+  }
+}
